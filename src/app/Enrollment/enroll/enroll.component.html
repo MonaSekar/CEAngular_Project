@@ -1,0 +1,86 @@
+<header *ngIf="userLoggedIn"
+    class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3"
+    style="background-color:#00008B;height:50px">
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <nav class="navbar" style="color:white;font-size:15px;">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white;font-size:25px;">
+                        {{this.currUser.userName}}
+                    </a>
+                </li>
+                <li class="nav-item" style="padding-left:1210px">
+
+                    <form class="form-inline">
+                        <button type="submit" (click) ="SLogout()"
+                            class="nav-link btn btn-link" style="color:white;font-size:25px;">
+                            <span onmouseover="this.style.backgroundColor = 'orange'"
+                                onmouseout="this.style.backgroundColor = 'transparent'">
+                                Logout
+                            </span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<h1 class="display-4" style="color:#00008B;font-weight:bold;font-family:Georgia, 'Times New Roman', Times, serif; margin-top:30px">
+    Choose Course to enroll
+</h1>
+
+<img src="../../../assets/Images/undraw_Booking_re_gw4j.png" width="700" height="500" style="float:left" />
+
+<div class="row">
+    <div style="text-align:left;margin-top:70px;">
+        <form [formGroup]="EnrollForm" (ngSubmit)="onSubmit(EnrollForm)">
+            <p *ngIf="AldEnrMsg != ''" style="width:fit-content;background-color:palevioletred;color:black;font-size:15px">
+                {{AldEnrMsg}}
+            </p>                  
+            
+            
+            <div class="form-group" style="font-size:30px;color:#00008B;font-family:Georgia, 'Times New Roman' , Times, serif;">
+                <label class="control-label">Choose a course:</label>
+                <select class="form-control" style="appearance:listbox" formControlName="chosenCourse" id="chosenCourse">
+                    <option class="dropdown-item" disabled selected value="undefined">Select an Option</option>
+                    <option *ngFor="let c of DropdownCourses" [value]="c.courseId">
+                        {{c.courseTitle}}
+                    </option>
+                </select>
+                <!-- <p style="width:fit-content;color:black;font-size:15px">
+                    <span style="background-color:palevioletred"
+                         *ngIf="(EnrollFormControl['chosenCourse'].touched) && (EnrollFormControl['chosenCourse'].errors?.['required'])">
+                        * </span>
+                </p> -->
+            </div>
+            <br />
+            <div class="form-group">
+                <input
+                type="submit" value="Enroll" class="btn btn-primary" 
+                style="background-color:#00008B;border-color:#00008B;font-size:20px;color:white;width:150px" />
+            </div>
+        </form>
+
+        <br />
+        <hr style="color:#00008B;height:5px" />
+        <br />
+        <p style="text-align:center;"> 
+            <input type="button" (click)="ViewStudentEnrollList()"
+                style="background-color:#00008B;border-color:#00008B;font-size:20px;color:white;width:fit-content" 
+                value="View enrolled courses"                 
+             />
+
+        </p>
+    </div>
+    
+</div>
+<button style="font-size:24px;background-color:#00008B;border-color:#00008B;color:white" (click)="AlertFunction()">Back <i class="fa fa-arrow-circle-left"></i></button>
+
+<script>
+    
+
+    function EnrollDone(){
+        alert("Course Enrollment Successful");
+    }
+</script>

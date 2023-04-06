@@ -1,0 +1,68 @@
+<h1 class="display-4"
+    style="color:#00008B;font-weight:bold;font-family:Georgia, 'Times New Roman', Times, serif; margin-top:30px">Admin
+    Login</h1>
+
+<br />
+<br />
+
+<img src="../.././../assets/Images/undraw_Designer_girl_re_h54c.png" width="700" height="500" style="float:left" />
+<div class="row">
+    <div style="text-align:left;margin-top:50px;">
+        <form [formGroup]="ALoginForm" (ngSubmit)="onSubmit(ALoginForm)">
+
+            <p *ngIf="ErrMsg!=''" style="width:fit-content;background-color:palevioletred;color:black;font-size:15px">
+                {{ ErrMsg }}
+            </p>
+
+
+            <!-- <div *ngIf="name.errors?.['required']">
+                Name is required.
+              </div>
+              <div *ngIf="name.errors?.['minlength']">
+                Name must be at least 4 characters long.
+              </div> -->
+
+            <div class="form-group"
+                style="font-size:30px;color:#00008B;font-family:Georgia, 'Times New Roman' , Times, serif;">
+                <label class="control-label">E-mail: </label>
+                <input type="email" class="form-control" formControlName="amail" id="amail" />
+                <p style="width:fit-content;color:black;font-size:15px">
+                    <span style="background-color:palevioletred"
+                        *ngIf="(ALoginFormControl['amail'].touched) && ALoginFormControl['amail'].errors?.['required']">
+                        * </span>
+                </p>
+                <p style="width:fit-content;color:black;font-size:15px">
+                    <span style="background-color:palevioletred"
+                        *ngIf="(ALoginFormControl['amail'].touched) && ALoginFormControl['amail'].errors?.['email']">
+                        Please enter a valid email </span>
+                </p>
+            </div>
+            <div class="form-group"
+                style="font-size:30px;color:#00008B;font-family:Georgia, 'Times New Roman' , Times, serif;">
+                <label class="control-label">Password: </label>
+                <input type="password" class="form-control" formControlName="apass" id="apass" />
+                <p style="width:fit-content;color:black;font-size:15px">
+                    <span style="background-color:palevioletred"
+                        *ngIf="(ALoginFormControl['apass'].touched) && ALoginFormControl['apass'].errors?.['required']">
+                        * </span>
+                </p>
+                <p style="width:fit-content;color:black;font-size:15px">
+                    <span style="background-color:palevioletred"
+                        *ngIf="(ALoginFormControl['apass'].touched) && ( ALoginFormControl['apass'].errors?.['minlength'] || ALoginFormControl['apass'].errors?.['maxlength'] )">
+                        Password should be between 6-8 characters.</span>
+                </p>
+            </div>
+            <br />
+            <div class="form-group">
+                <button type="submit" value="Login" class="btn btn-primary"
+                    style="background-color:#00008B;border-color:#00008B;font-size:30px;color:white;width:150px"
+                    [disabled]="!ALoginForm.valid">
+                    Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+<br /><br /><br />
+<button [routerLink]="['/CEHome']"
+    style="font-size:24px;background-color:#00008B;border-color:#00008B;color:white">Back <i
+        class="fa fa-arrow-circle-left"></i></button>

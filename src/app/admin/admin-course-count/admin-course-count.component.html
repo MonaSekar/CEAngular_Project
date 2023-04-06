@@ -1,0 +1,58 @@
+
+<header *ngIf="userLoggedIn" class="navbar navbar-expand-sm navbar-toggleable-sm border-bottom box-shadow mb-3"
+    style="background-color:#00008B;height:50px">
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+        <nav class="navbar" style="color:white;font-size:15px;">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" style="color:white;font-size:25px;">
+                        {{this.currUser.userName}}
+                    </a>
+                </li>
+                <li class="nav-item" style="padding-left:1210px">
+
+                    <form class="form-inline">
+                        <button type="submit" (click)="ALogout()" class="nav-link btn btn-link"
+                            style="color:white;font-size:25px;">
+                            <span onmouseover="this.style.backgroundColor = 'orange'"
+                                onmouseout="this.style.backgroundColor = 'transparent'">
+                                Logout
+                            </span>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<h1 class="display-4"
+    style="color:#00008B;font-weight:bold;font-family:Georgia, 'Times New Roman', Times, serif; margin-top:30px">Course
+    Enrollments Count</h1>
+<br /><br />
+
+<div style="display:flex;flex-direction:column">
+
+    <div style="display:flex;flex-direction:row;float:right">
+        <div>
+            <img src="../../../assets/Images/undraw_Percentages_re_a1ao.png" width="500" height="500" style="float:left" />
+        </div>
+        <div style="width:400px;height:500px;overflow:scroll;border:solid;padding:25px;margin: 0px 0px 0px 20%">
+            <!-- @foreach (var item in Model)
+    { -->
+            <div *ngFor="let item of enrollmentsCount" 
+                class="card text-black mb-3" style="max-width: 350px;text-align:center;background-color:#F5822B">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.courseTitle}}</h5>
+                    <p class="card-text" style="font-size:35px;font-weight:bold">{{item.courseCount}}</p>
+                </div>
+            </div>
+            <!-- } -->
+        </div>
+
+    </div>
+    <div>
+        <a [routerLink]="['/AdminCoursesList']" style="color:#00008B;padding-top:90%">Back to Course Details</a>
+    </div>
+
+</div>
